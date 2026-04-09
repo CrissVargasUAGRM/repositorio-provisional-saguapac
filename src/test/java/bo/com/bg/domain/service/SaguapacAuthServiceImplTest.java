@@ -3,12 +3,15 @@ package bo.com.bg.domain.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import bo.com.bg.app.request.SaguapacAuthRequest;
 import bo.com.bg.app.response.SaguapacTokenResponse;
+import bo.com.bg.domain.config.ProviderSaguapacConfig;
 import bo.com.bg.domain.connector.AuthenticationConnector;
 import bo.com.bg.domain.service.impl.SaguapacAuthServiceImpl;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -21,8 +24,20 @@ class SaguapacAuthServiceImplTest {
     @Mock
     private AuthenticationConnector authenticationConnector;
 
+    @Mock
+    private ProviderSaguapacConfig config;
+
     @InjectMocks
     private SaguapacAuthServiceImpl service;
+
+    @BeforeEach
+    void stubConfig() {
+        lenient().when(config.getLogin()).thenReturn("l");
+        lenient().when(config.getPassword()).thenReturn("p");
+        lenient().when(config.getSucursal()).thenReturn("s");
+        lenient().when(config.getCajero()).thenReturn("c");
+        lenient().when(config.getPasswordCajero()).thenReturn("pc");
+    }
 
     @Test
     void authenticate_shouldReturnToken_whenConnectorSucceeds() {

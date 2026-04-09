@@ -1,6 +1,7 @@
 package bo.com.bg.app.handler;
 
 import bo.com.bg.commons.dto.Response;
+import bo.com.bg.commons.exceptions.ProviderException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,18 @@ public class SaguapacRestExceptionHandler {
                         .success(false)
                         .message(ex.getMessage())
                         .code("400")
+                        .build());
+    }
+
+    @ExceptionHandler(ProviderException.class)
+    public ResponseEntity<Response<Void>> handleProviderException(ProviderException ex) {
+        org.springframework.http.HttpStatus status =
+                ex.getStatus() != null ? ex.getStatus() : org.springframework.http.HttpStatus.NOT_ACCEPTABLE;
+        return ResponseEntity.status(status)
+                .body(Response.<Void>builder()
+                        .success(false)
+                        .message(ex.getMessage())
+                        .code(ex.getCodeError())
                         .build());
     }
 

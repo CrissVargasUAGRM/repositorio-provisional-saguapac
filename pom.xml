@@ -174,7 +174,9 @@
                         <exclude>bo/com/bg/domain/provider/Provider.class</exclude>
                         <exclude>bo/com/bg/domain/service/SaguapacService.class</exclude>
                         <exclude>bo/com/bg/domain/service/SaguapacAuthService.class</exclude>
+                        <exclude>bo/com/bg/domain/service/ClientsService.class</exclude>
                         <exclude>bo/com/bg/domain/connector/AuthenticationConnector.class</exclude>
+                        <exclude>bo/com/bg/domain/connector/InvoicePendingConnector.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

@@ -34,6 +34,12 @@ public class ProviderSaguapacConfigFactory {
     @Value("${saguapac.provider.timeout}")
     private int timeout;
 
+    @Value("${saguapac.provider.context-path-clients}")
+    private String contextPathClients;
+
+    @Value("${saguapac.provider.is-mock-enabled:false}")
+    private boolean isMockEnabled;
+
     @Bean
     @RefreshScope
     public ProviderSaguapacConfig providerSaguapacConfig() {
@@ -46,6 +52,8 @@ public class ProviderSaguapacConfigFactory {
                 .cajero(cajero)
                 .passwordCajero(passwordCajero)
                 .timeout(timeout)
+                .contextPathClients(contextPathClients)
+                .mockEnabled(isMockEnabled)
                 .build();
     }
 }

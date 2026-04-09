@@ -86,6 +86,8 @@ saguapac:
     sucursal: ${SAGUAPAC_INTEGRATION_SUCURSAL}
     cajero: ${SAGUAPAC_INTEGRATION_CAJERO}
     password-cajero: ${SAGUAPAC_INTEGRATION_PASS_CAJERO}
+    context-path-clients: ${CONTEXT_PATH_CLIENT_SAGUAPAC:}
+    is-mock-enabled: ${MOCK_ENABLED:false}
 
 # Timeouts HTTP usados por libreria-conector (CustomServiceConnector) para llamadas al proveedor.
 provider:

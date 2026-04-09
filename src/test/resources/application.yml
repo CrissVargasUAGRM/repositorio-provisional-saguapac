@@ -23,6 +23,13 @@ saguapac:
     base-url: http://127.0.0.1:59999
     endpoint: /login
     timeout: 3000
+    login: test-login
+    password: test-pass
+    sucursal: "1"
+    cajero: "1"
+    password-cajero: test-pc
+    context-path-clients: /api/clientes/pendientes
+    is-mock-enabled: true
 
 provider:
   http:

@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 
 /**
  * Propiedades {@code saguapac.provider.*} definidas en configuración externa (sin valores por defecto en código).
@@ -25,4 +24,22 @@ public class ProviderSaguapacConfig {
     private String sucursal;
     private String cajero;
     private String passwordCajero;
+    /** Path del recurso facturas/cliente pendientes (Saguapac). */
+    private String contextPathClients;
+    private boolean mockEnabled;
+
+    /**
+     * URL base del GET de facturas pendientes: {@code baseUrl} + {@code contextPathClients}.
+     */
+    public String urlInvoicePendingSaguapac() {
+        String base = baseUrl != null ? baseUrl.replaceAll("/+$", "") : "";
+        String path = contextPathClients != null ? contextPathClients : "";
+        if (path.isEmpty()) {
+            return base;
+        }
+        if (!path.startsWith("/")) {
+            path = "/" + path;
+        }
+        return base + path;
+    }
 }
