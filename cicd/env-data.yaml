@@ -1,0 +1,17 @@
+# Metadatos de entorno para pipelines (ajustar por ambiente).
+# Valores de ejemplo; no commitear secretos reales.
+application:
+  name: saguapac-connector
+  version: "1.0"
+
+environments:
+  dev:
+    spring_profiles_active: dev
+  qa:
+    spring_profiles_active: qa
+  prod:
+    spring_profiles_active: prod
+
+notes:
+  - Configurar credenciales Maven (Azure Artifacts) en el pipeline para el perfil enterprise-library.
+  - Spring Cloud Config opcional vía spring.config.import en application.yml.

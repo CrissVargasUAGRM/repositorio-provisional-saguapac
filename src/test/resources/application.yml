@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+  boot:
+    admin:
+      client:
+        enabled: false
+  datasource:
+    jdbc-url: jdbc:h2:mem:saguapactest;DB_CLOSE_DELAY=-1;MODE=Oracle
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+
+# Valores solo para tests (arranque de contexto); en producción usar variables de entorno.
+saguapac:
+  provider:
+    base-url: http://127.0.0.1:59999
+    endpoint: /login
+    timeout: 3000
+
+provider:
+  http:
+    connectionTimeout: 3000
+    receiveTimeout: 3000

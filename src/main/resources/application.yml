@@ -1,0 +1,102 @@
+project:
+  version: @project.version@
+
+server:
+  servlet:
+    context-path: '/saguapac-connector'
+    session:
+      timeout: 1800s
+  port: ${SERVER_PORT:8080}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui/index.html
+
+spring:
+  application:
+    name: saguapac-connector
+  config:
+    import: "configserver:${CONFIG_SERVER_ADDR}/config"
+  cloud:
+    config:
+      enabled: ${CONFIG_SERVER_ENABLED}
+      label: master
+      fail-fast: true
+      retry:
+        max-attempts: 20
+        max-interval: 15000
+        initial-interval: 10000
+    bus:
+      enabled: ${REFRESH_ENABLED}
+      refresh:
+        enabled: ${REFRESH_ENABLED}
+      env:
+        enabled: ${REFRESH_ENABLED}
+  datasource:
+    jdbc-url: jdbc:oracle:thin:@//${ORACLE_SERVER}:${ORACLE_PORT}/${ORACLE_DATABASE}
+    username: ${ORACLE_USER}
+    password: ${ORACLE_PASSWORD}
+    maximum-pool-size: ${ORACLE_MAX_POOL}
+    minimum-idle: ${ORACLE_MINIMUM_IDLE}
+    idle-timeout: ${ORACLE_IDLE_TIMEOUT}
+    connection-timeout: ${ORACLE_CONNECTION_TIMEOUT}
+    poolName: ${ORACLE_POOL_NAME}
+  boot:
+    admin:
+      client:
+        enabled: ${MONITOR_ENABLED:false}
+        url: ${MONITOR_SERVER}
+        username: ${MONITOR_USER}
+        password: ${MONITOR_PASSWORD}
+        instance:
+          prefer-ip:
+            true
+  data:
+    redis:
+      host: ${REDIS_SERVER:localhost}
+      port: ${REDIS_PORT:6479}
+      timeout: 600000
+      password: ${REDIS_PASSWORD}
+      database: 0
+      lettuce:
+        shutdown-timeout: 100ms
+  var:
+    mockEnabled: ${MOCK_ENABLED}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+config:
+  timezone: ${PROJECT_TIME_ZONE}
+
+saguapac:
+  provider:
+    base-url: ${SAGUAPAC_BASE_URL}
+    endpoint: ${SAGUAPAC_ENDPOINT}
+    timeout: ${SAGUAPAC_TIMEOUT}
+    login: ${SAGUAPAC_INTEGRATION_LOGIN}
+    password: ${SAGUAPAC_INTEGRATION_PASSWORD}
+    sucursal: ${SAGUAPAC_INTEGRATION_SUCURSAL}
+    cajero: ${SAGUAPAC_INTEGRATION_CAJERO}
+    password-cajero: ${SAGUAPAC_INTEGRATION_PASS_CAJERO}
+
+# Timeouts HTTP usados por libreria-conector (CustomServiceConnector) para llamadas al proveedor.
+provider:
+  http:
+    connectionTimeout: ${SAGUAPAC_TIMEOUT}
+    receiveTimeout: ${SAGUAPAC_TIMEOUT}
+
+#logging:
+#  level:
+#    org.springframework: DEBUG
+#    com.zaxxer.hikari.HikariConfig: DEBUG
+#    com.zaxxer.hikari: DEBUG
+
+---
