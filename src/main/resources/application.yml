@@ -94,6 +94,12 @@ provider:
   http:
     connectionTimeout: ${SAGUAPAC_TIMEOUT}
     receiveTimeout: ${SAGUAPAC_TIMEOUT}
+  sql:
+    query-get-criteria: ${PROVIDER_SQL_QUERY_GET_CRITERIA}
+    schema-ganadero: ${PROVIDER_SQL_SCHEMA_GANADERO}
+    package-srv-name: ${PROVIDER_SQL_PACKAGE_SRV_NAME}
+    sp-srv-insert-name: ${PROVIDER_SQL_SP_SRV_INSERT_NAME}
+    allowed-criteria-service-id: ${PROVIDER_SQL_ALLOWED_CRITERIA_SERVICE_ID:705}
 
 #logging:
 #  level:

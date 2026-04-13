@@ -18,7 +18,7 @@ DECLARE
 
 BEGIN
 	-- se define en el router main /staging / srv_servicios (coordinacion) 
-	codServicio:= 704;  -- id servicio para saguapac
+	codServicio:= 705;  -- id servicio para saguapac
 
 	-- cod cliente pedir al canal transactional ya que debera tener una cuenta  
 	-- permite multiples conceptos N
@@ -65,15 +65,15 @@ BEGIN
 	-- ============================================
 	-- 4. Dependencias para Padre 1
 	-- ============================================
-	SELECT MAX(IDENTIFICADOR) + 1 INTO codDependenciaCriterio
-	FROM GANADERO.SRV_DEPENDENCIA_CRITERIO_BUSQUEDA;
+	--SELECT MAX(IDENTIFICADOR) + 1 INTO codDependenciaCriterio
+	--FROM GANADERO.SRV_DEPENDENCIA_CRITERIO_BUSQUEDA;
 	
-	codDependenciaCriterio := codDependenciaCriterio + 1;
-	INSERT INTO GANADERO.SRV_DEPENDENCIA_CRITERIO_BUSQUEDA
-	VALUES (codDependenciaCriterio, codCriterioPadre1, codCriterioPadre1, 'A', 2, 0, 0);
+	--codDependenciaCriterio := codDependenciaCriterio + 1;
+	--INSERT INTO GANADERO.SRV_DEPENDENCIA_CRITERIO_BUSQUEDA
+	--VALUES (codDependenciaCriterio, codCriterioPadre1, codCriterioPadre1, 'A', 2, 0, 0);
 
 	
-DBMS_OUTPUT.PUT_LINE('3. Servicio insertado correctamente');
+    DBMS_OUTPUT.PUT_LINE('3. Servicio insertado correctamente');
 	-- SRV_TIPOS EQUIVALENCIA
 	SELECT MAX(IDENTIFICADOR) + 1 INTO codEquivalencia FROM GANADERO.SRV_TIPOS_EQUIVALENCIA;
 	INSERT INTO GANADERO.SRV_TIPOS_EQUIVALENCIA (IDENTIFICADOR, COD_SERVICIO, COD_TIPO_PARAMETRO, VALOR_TOPAZ, VALOR_EMPRESA)
@@ -161,7 +161,7 @@ DBMS_OUTPUT.PUT_LINE('3. Servicio insertado correctamente');
 	VALUES(codConexionParametro, codServicio, 'http://172.24.16.60/int/ps/router/', 'R', 'J', 191, NULL, NULL, NULL, NULL, 'H', NULL, NULL, NULL, 'TOP1', 701, SYSDATE, NULL, NULL, NULL, 0, 'A01', 132);
 	
 	INSERT INTO GANADERO.PARAMETROS_JTS (FUNCIONALIDAD, PARAMETRO, VALOR, TZ_LOCK)
-	VALUES('LLAVE_DE_BUSQUEDA_ID_AFILIACION', 'OPCION704', TO_CHAR(codServicio), 0);
+	VALUES('LLAVE_DE_BUSQUEDA_ID_AFILIACION', 'OPCION706', TO_CHAR(codServicio), 0);
 	
 	COMMIT ;
 

@@ -35,3 +35,16 @@ provider:
   http:
     connectionTimeout: 3000
     receiveTimeout: 3000
+  sql:
+    query-get-criteria: >-
+      SELECT 100 AS identifier, 705 AS service_id, 1 AS code_externo, 2 AS data_type_code,
+      'S' AS is_mandatory, 'CODIGO SOCIO' AS label_criteria, 1 AS minimum_length, 15 AS maximum_length,
+      0 AS search_method, CAST(NULL AS VARCHAR(200)) AS values, CAST(NULL AS VARCHAR(200)) AS value_default,
+      '1' AS abbreviation, 'CODIGO SOCIO' AS description, 10 AS cod_action, 'codigoSocio' AS alias,
+      1 AS flow_code_hab, 'N' AS is_subservice, CAST(NULL AS INTEGER) AS criterion_code_search,
+      CAST(NULL AS INTEGER) AS criterion_code_child, 1 AS ordinal, 'TIGO' AS service_name
+      FROM DUAL WHERE CAST(:serviceId AS INTEGER) = 705
+    schema-ganadero: TEST
+    package-srv-name: TEST_PKG
+    sp-srv-insert-name: TEST_SP
+    allowed-criteria-service-id: 705
